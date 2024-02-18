@@ -31,7 +31,7 @@ const SearchContainer = () => {
   return (
     <Wrapper>
       <form className='form' onSubmit={handleSubmit}>
-        <h4>search form</h4>
+        <h4>search listings</h4>
         <div className='form-center'>
           {/* search position */}
 
@@ -43,15 +43,6 @@ const SearchContainer = () => {
               setSearch(e.target.value)
             }}
           />
-          <FormRow
-            type='text'
-            name='contact'
-            value={contact}
-            handleChange={(e) => {
-              setContact(e.target.value)
-            }}
-          />
-
           <FormRowSelect
             name='sort'
             value={sort}
@@ -65,17 +56,6 @@ const SearchContainer = () => {
             list={contactOptions}
             handleChange={handleSearch}
           />
-
-          <FormRowSelect
-            name='showRead'
-            labelText='show all?'
-            value={showRead}
-            list={showReadOption}
-            handleChange={handleSearch}
-          />
-          <button className='btn btn-block' type='submit' disabled={isLoading}>
-            {isLoading ? 'Please Wait...' : 'submit'}
-          </button>
         </div>
       </form>
     </Wrapper>

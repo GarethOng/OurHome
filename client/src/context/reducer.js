@@ -8,6 +8,8 @@ import {
   LOGIN_USER_SUCCESS,
   LOGIN_USER_ERROR,
   LOGOUT_USER,
+  TOGGLE_SIDEBAR,
+  ADD_CONTRACTOR_SUCCESS,
 } from './action'
 import { initialState } from './appContext'
 
@@ -90,6 +92,22 @@ const reducer = (state, action) => {
       ...initialState,
       user: null,
       token: null,
+    }
+  }
+
+  if (action.type === TOGGLE_SIDEBAR) {
+    return {
+      ...state,
+      showSidebar: !state.showSidebar,
+    }
+  }
+
+  if (action.type === ADD_CONTRACTOR_SUCCESS) {
+    return {
+      ...state,
+      showAlert: true,
+      alertType: 'success',
+      alertText: 'Contractor Added!',
     }
   }
 

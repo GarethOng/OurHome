@@ -10,6 +10,8 @@ import {
   LOGIN_USER_SUCCESS,
   LOGIN_USER_ERROR,
   LOGOUT_USER,
+  TOGGLE_SIDEBAR,
+  ADD_CONTRACTOR_SUCCESS,
 } from './action'
 import axios from 'axios'
 
@@ -34,11 +36,21 @@ const initialState = {
   gmail: '',
   sort: 'latest',
   contactKeyword: '',
-  sortOptions: ['latest', 'negative-positive'],
+  sortOptions: ['latest', 'lowest-highest', 'highest-lowest'],
   contactSort: 'default',
-  contactOptions: ['unclassified', 'customer', 'business partner', 'others'],
+  contactOptions: [
+    '< $10,000',
+    '$10,000 - $50,000',
+    '$50,000 - $100,000',
+    '> $100,000',
+  ],
   filter: 'unclassified',
-  contactType: 'unclassified',
+  contactType: [
+    '< $10,000',
+    '$10,000 - $50,000',
+    '$50,000 - $100,000',
+    '> $100,000',
+  ],
   contacts: [],
   totalContacts: 0,
   isEditing: false,
@@ -130,6 +142,7 @@ const AppProvider = ({ children }) => {
 
   const loginUser = async (currentUser) => {
     dispatch({ type: LOGIN_USER_BEGIN })
+    console.log(currentUser)
     try {
       const { data } = await axios.post(
         'http://localhost:5001/api/v1/auth/login',
@@ -157,6 +170,16 @@ const AppProvider = ({ children }) => {
     removeUserFromLocalStorage()
   }
 
+  const toggleSidebar = () => {
+    dispatch({ type: TOGGLE_SIDEBAR })
+  }
+
+  const displayAddContractorSuccess = () => {
+    console.log('displayAddContractorSuccess')
+    dispatch({ type: ADD_CONTRACTOR_SUCCESS })
+    clearAlert()
+  }
+
   return (
     <AppContext.Provider
       value={{
@@ -164,6 +187,8 @@ const AppProvider = ({ children }) => {
         displayAlert,
         registerUser,
         loginUser,
+        toggleSidebar,
+        displayAddContractorSuccess,
       }}
     >
       {children}

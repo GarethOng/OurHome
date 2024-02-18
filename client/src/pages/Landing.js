@@ -3,6 +3,8 @@ import Wrapper from '../assets/wrappers/LandingPage'
 import { Logo } from '../components'
 import main from '../assets/images/landingphoto.svg'
 import { Link } from 'react-router-dom'
+import { ListingContainer } from '../components'
+import { ContractorContainer } from '../components'
 
 function Landing() {
   return (
@@ -20,6 +22,8 @@ function Landing() {
         </div>
         <img src={main} alt='collate' className='img main-img' />
       </div>
+      <ListingContainer />
+      <ContractorContainer />
     </Wrapper>
   )
 }
